@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaDana - Dashboard Infrastruktur Desa</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-primary text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="../assets/NusaDanaLogo.png" alt="NusaDana Logo" class="navbar-logo">
+                    <h1 class="nav-title">NusaDana</h1>
+                </div>
+                <div class="navbar-links">
+                    <a href="landing.html" class="nav-btn">Beranda</a>
+                    <a href="dashboard.html" class="nav-btn active">Dashboard</a>
+                    <a href="projects.html" class="nav-btn">Proyek</a>
+                    <a href="reports.html" class="nav-btn">Laporan</a>
+                    <a href="budget.html" class="nav-btn">Anggaran</a>
+                </div>
+                <div class="nav-profile">
+                    <span class="text-sm">Selamat datang, <strong>Pak Surya</strong></span>
+                    <div class="w-8 h-8 bg-accent rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-mobile px-4 pb-4">
+            <a href="landing.html" class="nav-btn">Beranda</a>
+            <a href="dashboard.html" class="nav-btn active">Dashboard</a>
+            <a href="projects.html" class="nav-btn">Proyek</a>
+            <a href="reports.html" class="nav-btn">Laporan</a>
+            <a href="budget.html" class="nav-btn">Anggaran</a>
+        </div>
+    </nav>
+    <div id="notifications" class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mx-4 mt-4 rounded shadow-sm"></div>
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <div id="dashboard-view" class="view-content">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Project Dashboard: Real-Time Monitoring</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Progress Proyek (Real-Time)</h3>
+                    <canvas id="dashboard-bar-chart" width="300" height="200"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Distribusi Status Proyek</h3>
+                    <canvas id="dashboard-pie-chart" width="300" height="200"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Anggaran Proyek (Fund Usage)</h3>
+                    <canvas id="dashboard-line-chart" width="300" height="200"></canvas>
+                </div>
+            </div>
+            <!-- Quick Actions (unchanged) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Recent Projects -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Proyek Terbaru</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Perbaikan Jalan Desa</p>
+                                <p class="text-sm text-gray-600">Status: Sedang Berjalan</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">75%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Pembangunan Jembatan</p>
+                                <p class="text-sm text-gray-600">Status: Menunggu Dana</p>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">0%</span>
+                        </div>
+                    </div>
+                    <a href="./assets/projects.html" class="mt-4 w-full btn">Lihat Semua Proyek</a>
+                </div>
+                <!-- Budget Overview -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Ringkasan Anggaran</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Tersedia</span>
+                            <span class="font-semibold text-green-600">Rp 1.200.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Terpakai</span>
+                            <span class="font-semibold text-blue-600">Rp 800.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Sisa</span>
+                            <span class="font-semibold text-accent">Rp 400.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-primary h-3 rounded-full" style="width: 67%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 text-center">67% anggaran telah digunakan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

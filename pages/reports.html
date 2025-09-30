@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaDana - Laporan dan Dokumentasi</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+   <nav class="bg-primary text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="../assets/NusaDanaLogo.png" alt="NusaDana Logo" class="navbar-logo">
+                    <h1 class="nav-title">NusaDana</h1>
+                </div>
+                                <div class="navbar-links">
+                    <a href="landing.html" class="nav-btn">Beranda</a>
+                    <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                    <a href="projects.html" class="nav-btn">Proyek</a>
+                    <a href="reports.html" class="nav-btn active">Laporan</a>
+                    <a href="budget.html" class="nav-btn">Anggaran</a>
+                </div>
+                <div class="nav-profile">
+                    <span class="text-sm">Selamat datang, <strong>Pak Surya</strong></span>
+                    <div class="w-8 h-8 bg-accent rounded-full"></div>
+                </div>
+            </div>
+        </div>
+                <div class="navbar-mobile px-4 pb-4">
+            <a href="landing.html" class="nav-btn">Beranda</a>
+            <a href="dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="projects.html" class="nav-btn">Proyek</a>
+            <a href="reports.html" class="nav-btn active">Laporan</a>
+            <a href="budget.html" class="nav-btn">Anggaran</a>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <div id="reports-view" class="view-content">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Laporan dan Dokumentasi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                        <!-- Automated Reporting -->
+                        <section class="mb-10">
+                            <h3 class="text-xl font-semibold mb-4">Automated LPJ Reporting</h3>
+                            <div class="bg-white rounded-lg shadow p-6 mb-4">
+                                <p class="mb-2">AI generates standardized LPJ reports that comply with central government regulations. Preview below:</p>
+                                <textarea class="w-full border rounded px-3 py-2 mb-4" rows="8" readonly>Contoh LPJ Otomatis:
+    Nama Proyek: Perbaikan Jalan Desa
+    Kategori: Jalan
+    Anggaran: Rp 500.000.000
+    Status: Selesai
+    Deskripsi: Proyek perbaikan jalan desa telah selesai sesuai rencana.
+
+    AI-generated summary and compliance checks here...</textarea>
+                                <button class="btn">Download LPJ</button>
+                            </div>
+                        </section>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Generate Laporan</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Laporan</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>Laporan Pertanggungjawaban (LPJ)</option>
+                                <option>Laporan Keuangan</option>
+                                <option>Laporan Progress Proyek</option>
+                                <option>Laporan Dana Desa</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Periode</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="date" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <input type="date" class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+                        <button onclick="generateReport()" class="w-full btn">Generate Laporan</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Upload Dokumen</h3>
+                    <div class="space-y-4">
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <p class="text-gray-600 mt-2">Klik untuk upload atau drag & drop</p>
+                            <p class="text-sm text-gray-400">PNG, JPG, PDF (max 5MB)</p>
+                            <input type="file" class="hidden" accept=".png,.jpg,.jpeg,.pdf">
+                        </div>
+                        <button class="w-full btn">Upload Dokumen</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900">Laporan Terbaru</h3>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-gray-900">LPJ Dana Desa Q1 2024</p>
+                            <p class="text-sm text-gray-600">Dibuat: 15 Maret 2024</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="text-blue-600 hover:text-blue-800">Download</button>
+                            <button class="text-gray-600 hover:text-gray-800">Lihat</button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-medium text-gray-900">Laporan Keuangan Februari 2024</p>
+                            <p class="text-sm text-gray-600">Dibuat: 1 Maret 2024</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="text-blue-600 hover:text-blue-800">Download</button>
+                            <button class="text-gray-600 hover:text-gray-800">Lihat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/reports.js"></script>
+</body>
+</html>

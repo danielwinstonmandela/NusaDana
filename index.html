@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRPL - Sistem Pembangunan Infrastruktur Desa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-primary text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="./assets/NusaDanaLogo.png" alt="NusaDana Logo" class="navbar-logo">
+                    <h1 class="nav-title">NusaDana</h1>
+                </div>
+                <div class="navbar-links">
+                    <a href="./pages/landing.html" class="nav-btn active">Beranda</a>
+                    <a href="./pages/dashboard.html" class="nav-btn">Dashboard</a>
+                    <a href="./pages/projects.html" class="nav-btn">Proyek</a>
+                    <a href="./pages/reports.html" class="nav-btn">Laporan</a>
+                    <a href="./pages/budget.html" class="nav-btn">Anggaran</a>
+                </div>
+                <div class="nav-profile">
+                    <span class="text-sm">Selamat datang, <strong>Pak Surya</strong></span>
+                    <div class="w-8 h-8 bg-accent rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-mobile px-4 pb-4">
+            <a href="./pages/landing.html" class="nav-btn active">Beranda</a>
+            <a href="./pages/dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="./pages/projects.html" class="nav-btn">Proyek</a>
+            <a href="./pages/reports.html" class="nav-btn">Laporan</a>
+            <a href="./pages/budget.html" class="nav-btn">Anggaran</a>
+        </div>
+    </nav>
+
+    <!-- Notifications -->
+    <div id="notifications" class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mx-4 mt-4 rounded shadow-sm">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-yellow-700">
+                    <strong>Pengingat:</strong> Laporan LPJ untuk periode Januari-Maret 2024 harus diserahkan dalam 5 hari.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="view-content">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Dashboard Infrastruktur Desa</h2>
+            <!-- Dashboard Charts -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Progress Proyek</h3>
+                    <a href="index.html" class="nav-btn">Home</a>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Distribusi Status Proyek</h3>
+                    <canvas id="dashboard-pie-chart" width="300" height="200"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Anggaran Proyek</h3>
+                    <canvas id="dashboard-line-chart" width="300" height="200"></canvas>
+                </div>
+            </div>
+            <!-- Quick Actions (unchanged) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Recent Projects -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Proyek Terbaru</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Perbaikan Jalan Desa</p>
+                                <p class="text-sm text-gray-600">Status: Sedang Berjalan</p>
+                            </div>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">75%</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Pembangunan Jembatan</p>
+                                <p class="text-sm text-gray-600">Status: Menunggu Dana</p>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">0%</span>
+                        </div>
+                    </div>
+                    <button onclick="showView('projects')" class="mt-4 w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                        Lihat Semua Proyek
+                    </button>
+                </div>
+                <!-- Budget Overview -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Ringkasan Anggaran</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Tersedia</span>
+                            <span class="font-semibold text-green-600">Rp 1.200.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Terpakai</span>
+                            <span class="font-semibold text-blue-600">Rp 800.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Dana Sisa</span>
+                            <span class="font-semibold text-accent">Rp 400.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-primary h-3 rounded-full" style="width: 67%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 text-center">67% anggaran telah digunakan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Budget View -->
+        <div id="budget-view" class="view-content hidden">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Manajemen Anggaran</h2>
+            
+            <!-- Budget Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Total Dana Desa</h3>
+                    <p class="text-3xl font-bold text-primary">Rp 2.500.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">Tahun Anggaran 2024</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Dana Terpakai</h3>
+                    <p class="text-3xl font-bold text-green-600">Rp 1.675.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">67% dari total anggaran</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Sisa Dana</h3>
+                    <p class="text-3xl font-bold text-accent">Rp 825.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">33% dari total anggaran</p>
+                </div>
+            </div>
+
+            <!-- Budget Allocation -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Alokasi Dana per Kategori</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Infrastruktur Jalan</span>
+                            <span class="font-semibold">Rp 800.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 32%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Sanitasi</span>
+                            <span class="font-semibold">Rp 600.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 24%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Fasilitas Umum</span>
+                            <span class="font-semibold">Rp 500.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-yellow-600 h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Pemberdayaan Masyarakat</span>
+                            <span class="font-semibold">Rp 400.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 16%"></div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Operasional</span>
+                            <span class="font-semibold">Rp 200.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-600 h-2 rounded-full" style="width: 8%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Riwayat Pencairan Dana</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 1 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 Januari 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 2 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 April 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 3 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 Juli 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-yellow-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 4 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">Menunggu pencairan</p>
+                            </div>
+                            <span class="text-yellow-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Project Modal -->
+    <div id="add-project-modal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-96 overflow-y-auto">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-semibold text-gray-900">Tambah Proyek Baru</h3>
+                    <button onclick="hideModal('add-project')" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <form id="add-project-form" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Proyek</label>
+                        <input type="text" id="project-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Masukkan nama proyek">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select id="project-category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Pilih kategori</option>
+                            <option value="jalan">Infrastruktur Jalan</option>
+                            <option value="jembatan">Jembatan</option>
+                            <option value="sanitasi">Sanitasi</option>
+                            <option value="fasilitas">Fasilitas Umum</option>
+                            <option value="pemberdayaan">Pemberdayaan Masyarakat</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                    <textarea id="project-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Jelaskan detail proyek"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Anggaran (Rp)</label>
+                        <input type="number" id="project-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Prioritas</label>
+                        <select id="project-priority" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="tinggi">Tinggi</option>
+                            <option value="sedang">Sedang</option>
+                            <option value="rendah">Rendah</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                        <input type="date" id="project-start-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estimasi Selesai</label>
+                        <input type="date" id="project-end-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="hideModal('add-project')" class="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        Simpan Proyek
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

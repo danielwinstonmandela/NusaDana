@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaDana - Manajemen Proyek</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-primary text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="../assets/NusaDanaLogo.png" alt="NusaDana Logo" class="navbar-logo">
+                    <h1 class="nav-title">NusaDana</h1>
+                </div>
+                                <div class="navbar-links">
+                    <a href="landing.html" class="nav-btn">Beranda</a>
+                    <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                    <a href="projects.html" class="nav-btn active">Proyek</a>
+                    <a href="reports.html" class="nav-btn">Laporan</a>
+                    <a href="budget.html" class="nav-btn">Anggaran</a>
+                </div>
+                <div class="nav-profile">
+                    <span class="text-sm">Selamat datang, <strong>Pak Surya</strong></span>
+                    <div class="w-8 h-8 bg-accent rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-mobile px-4 pb-4">
+            <a href="landing.html" class="nav-btn">Beranda</a>
+            <a href="dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="projects.html" class="nav-btn active">Proyek</a>
+            <a href="reports.html" class="nav-btn">Laporan</a>
+            <a href="budget.html" class="nav-btn">Anggaran</a>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <div id="projects-view" class="view-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-900">Manajemen Proyek</h2>
+                <button onclick="showModal('add-project')" class="btn">Tambah Proyek</button>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <div class="flex flex-wrap gap-4">
+                    <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option>Semua Status</option>
+                        <option>Perencanaan</option>
+                        <option>Sedang Berjalan</option>
+                        <option>Selesai</option>
+                        <option>Ditunda</option>
+                    </select>
+                    <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option>Semua Kategori</option>
+                        <option>Jalan</option>
+                        <option>Jembatan</option>
+                        <option>Sanitasi</option>
+                        <option>Fasilitas Umum</option>
+                    </select>
+                    <input type="text" placeholder="Cari proyek..." class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="projects-list">
+                <!-- Project cards will be rendered here by app.js -->
+            </div>
+        </div>
+    </main>
+    <!-- Add Project Modal (copied from index.html, will be shown/hidden by app.js) -->
+    <div id="add-project-modal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-96 overflow-y-auto">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-semibold text-gray-900">Tambah Proyek Baru</h3>
+                    <button onclick="hideModal('add-project')" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <form id="add-project-form" class="p-6 space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Proyek</label>
+                        <input type="text" id="project-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Masukkan nama proyek">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select id="project-category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Pilih kategori</option>
+                            <option value="jalan">Infrastruktur Jalan</option>
+                            <option value="jembatan">Jembatan</option>
+                            <option value="sanitasi">Sanitasi</option>
+                            <option value="fasilitas">Fasilitas Umum</option>
+                            <option value="pemberdayaan">Pemberdayaan Masyarakat</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
+                    <textarea id="project-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Jelaskan detail proyek"></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Anggaran (Rp)</label>
+                        <input type="number" id="project-budget" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Prioritas</label>
+                        <select id="project-priority" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="tinggi">Tinggi</option>
+                            <option value="sedang">Sedang</option>
+                            <option value="rendah">Rendah</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Mulai</label>
+                        <input type="date" id="project-start-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Estimasi Selesai</label>
+                        <input type="date" id="project-end-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 pt-4">
+                    <button type="button" onclick="hideModal('add-project')" class="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">Batal</button>
+                    <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors">Simpan Proyek</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../js/projects.js"></script>
+</body>
+</html>

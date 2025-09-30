@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusaDana - Manajemen Anggaran</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-primary text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="../assets/NusaDanaLogo.png" alt="NusaDana Logo" class="navbar-logo">
+                    <h1 class="nav-title">NusaDana</h1>
+                </div>
+                                <div class="navbar-links">
+                    <a href="landing.html" class="nav-btn">Beranda</a>
+                    <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                    <a href="projects.html" class="nav-btn">Proyek</a>
+                    <a href="reports.html" class="nav-btn">Laporan</a>
+                    <a href="budget.html" class="nav-btn active">Anggaran</a>
+                </div>
+                <div class="nav-profile">
+                    <span class="text-sm">Selamat datang, <strong>Pak Surya</strong></span>
+                    <div class="w-8 h-8 bg-accent rounded-full"></div>
+                </div>
+            </div>
+        </div>
+                <div class="navbar-mobile px-4 pb-4">
+            <a href="landing.html" class="nav-btn">Beranda</a>
+            <a href="dashboard.html" class="nav-btn">Dashboard</a>
+            <a href="projects.html" class="nav-btn">Proyek</a>
+            <a href="reports.html" class="nav-btn">Laporan</a>
+            <a href="budget.html" class="nav-btn">Anggaran</a>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <div id="budget-view" class="view-content">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Manajemen Anggaran</h2>
+                <!-- Priority Scoring Tool -->
+                <section class="mb-10">
+                    <h3 class="text-xl font-semibold mb-4">Priority Scoring Tool</h3>
+                    <div class="bg-white rounded-lg shadow p-6 mb-4">
+                        <p class="mb-2">Projects are ranked by urgency, impact, budget, and community votes. Enter project data below to see priority score:</p>
+                        <form id="priority-score-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                            <div>
+                                <label class="block mb-2 font-medium">Urgency (1-5)</label>
+                                <input type="number" name="urgency" min="1" max="5" class="w-full border rounded px-3 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2 font-medium">Impact (1-5)</label>
+                                <input type="number" name="impact" min="1" max="5" class="w-full border rounded px-3 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2 font-medium">Budget (Rp)</label>
+                                <input type="number" name="budget" class="w-full border rounded px-3 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2 font-medium">Community Votes</label>
+                                <input type="number" name="votes" class="w-full border rounded px-3 py-2" required>
+                            </div>
+                            <div class="md:col-span-2 flex justify-end">
+                                <button type="submit" class="btn">Calculate Priority</button>
+                            </div>
+                        </form>
+                        <div id="priority-score-result" class="text-lg font-semibold text-primary"></div>
+                    </div>
+                </section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Total Dana Desa</h3>
+                    <p class="text-3xl font-bold text-primary">Rp 2.500.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">Tahun Anggaran 2024</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Dana Terpakai</h3>
+                    <p class="text-3xl font-bold text-green-600">Rp 1.675.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">67% dari total anggaran</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Sisa Dana</h3>
+                    <p class="text-3xl font-bold text-accent">Rp 825.000.000</p>
+                    <p class="text-sm text-gray-600 mt-2">33% dari total anggaran</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Alokasi Dana per Kategori</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Infrastruktur Jalan</span>
+                            <span class="font-semibold">Rp 800.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 32%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Sanitasi</span>
+                            <span class="font-semibold">Rp 600.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 24%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Fasilitas Umum</span>
+                            <span class="font-semibold">Rp 500.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-yellow-600 h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Pemberdayaan Masyarakat</span>
+                            <span class="font-semibold">Rp 400.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-600 h-2 rounded-full" style="width: 16%"></div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Operasional</span>
+                            <span class="font-semibold">Rp 200.000.000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-600 h-2 rounded-full" style="width: 8%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Riwayat Pencairan Dana</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 1 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 Januari 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 2 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 April 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 3 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">15 Juli 2024</p>
+                            </div>
+                            <span class="text-green-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-yellow-50 rounded-lg">
+                            <div>
+                                <p class="font-medium text-gray-900">Tahap 4 - Dana Desa</p>
+                                <p class="text-sm text-gray-600">Menunggu pencairan</p>
+                            </div>
+                            <span class="text-yellow-600 font-semibold">Rp 625.000.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../js/budget.js"></script>
+</body>
+</html>

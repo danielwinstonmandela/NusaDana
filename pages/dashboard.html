@@ -61,7 +61,7 @@
                 <!-- Recent Projects -->
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Proyek Terbaru</h3>
-                    <div class="space-y-4">
+                    <div class="space-y-4 mb-6">
                         <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div>
                                 <p class="font-medium text-gray-900">Perbaikan Jalan Desa</p>
@@ -77,7 +77,23 @@
                             <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">0%</span>
                         </div>
                     </div>
-                    <a href="./assets/projects.html" class="mt-4 w-full btn">Lihat Semua Proyek</a>
+                    <div class="mt-6" style="margin-top: 24px;">
+                        <button onclick="window.location.href='projects.html'" 
+                                style="width: 100%; 
+                                       background-color: #2563eb; 
+                                       color: white; 
+                                       font-weight: bold; 
+                                       padding: 12px 16px; 
+                                       border-radius: 8px; 
+                                       border: none; 
+                                       cursor: pointer; 
+                                       font-size: 16px;
+                                       transition: background-color 0.2s;"
+                                onmouseover="this.style.backgroundColor='#1d4ed8'"
+                                onmouseout="this.style.backgroundColor='#2563eb'">
+                            Lihat Semua Proyek
+                        </button>
+                    </div>
                 </div>
                 <!-- Budget Overview -->
                 <div class="bg-white rounded-lg shadow-sm p-6">

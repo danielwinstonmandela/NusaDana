@@ -231,7 +231,7 @@ h3 {
 /* Buttons */
 .btn {
   background: var(--accent);
-  color: #fff;
+  color: #ffffff !important;
   border: none;
   border-radius: 0.5rem;
   padding: 0.7rem 2rem;
@@ -240,11 +240,14 @@ h3 {
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: background 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  text-decoration: none !important;
+  display: inline-block;
 }
 .btn:hover, .btn:focus {
   background: #23272f;
-  color: #fff;
+  color: #ffffff !important;
   box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  text-decoration: none !important;
 }
 
 /* Card/Panel */
